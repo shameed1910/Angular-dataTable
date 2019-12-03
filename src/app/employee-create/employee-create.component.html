@@ -1,0 +1,72 @@
+<div class="container">
+
+
+  <h2>Add User Data</h2>
+<section >
+
+<form novalidate [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+  <div *ngIf="employeeForm.errors" class="alert-danger">Please enter mandatory fields</div>
+<fieldset>
+
+<div class="form-group">
+<label for="name">Name:</label>
+<input type="text" class="form-control" formControlName="name"  >
+<div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+  <div *ngIf="name.errors.required">Name is required</div>
+  <div *ngIf="name.errors.minlength">Name should be minimum 3 characters</div>
+
+</div>
+
+</div>
+
+<div class="form-group">
+<label for="email">Email:</label>
+<input type="text" class="form-control" formControlName="email">
+<div *ngIf="email.touched && email.invalid" class="alert alert-danger">Email is required.</div>
+
+</div>
+<div class="form-group">
+  <label for="commodity">Commodity:</label>
+  <select [(ngModel)]="selectedCommodity" class="form-control dropdown" formControlName="commodity" (input)="onInput($event)">
+    <option *ngFor=" let commodity of commodities" value= {{commodity.name}}>{{commodity.name}}</option>
+    </select>
+    </div>
+  <div class="form-group">
+    <label for="weight">Weight:</label>
+    <input type="text" class="form-control" formControlName="weight">
+    <div *ngIf="weight.touched && weight.invalid" class="alert alert-danger">Weight is required.</div>
+
+    </div>
+    <div class="form-group">
+      <label for="weightdesc">Weight Desc:</label>
+      <select [(ngModel)]="selectedWeightDesc" class="form-control dropdown" formControlName="weightdesc" (input)="onInput1($event)">
+        <option *ngFor=" let weightdesc of weightdescriptions" value= {{weightdesc.name}}>{{weightdesc.name}}</option>
+        </select>
+        </div>
+   <!-- <div class="form-group">
+      <label for="weight_desc">Weight Desc:</label>
+      <input type="text" class="form-control" formControlName="weight_desc">
+      </div>!-->
+      <div class="form-group">
+        <label for="rupees">Rupees:</label>
+        <input type="text" class="form-control" formControlName="rupees">
+        </div>
+        <div class="form-group">
+          <label for="mobile">Mobile:</label>
+          <input type="text" class="form-control" formControlName="mobile">
+          </div>
+        <div class="form-group">
+          <label for="purchase_date">Purchase Date:</label>
+          <input type="text" bsDatepicker class="form-control" formControlName="purchase_date">
+          </div>
+        
+</fieldset>
+
+<button type="submit" class="btn btn-primary" >Submit</button>
+<button type="button" class="btn btn-warning" (click)="redirectUserPage()">Cancel</button>
+
+<pre>{{employeeForm.value | json}}</pre>
+
+</form>
+</section>
+</div>

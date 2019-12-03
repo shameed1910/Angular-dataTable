@@ -1,0 +1,39 @@
+<div class="container">
+
+<h2>Read data</h2>
+  <table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th width="400">Id</th>
+        <th width="400">Name</th>
+        <th width="400">Commodity</th>
+  
+        <th width="400">Weight</th>
+        <th width="400">Rupees</th>
+        <th width="400">Date</th>
+
+        <th width="400">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.commodity}}</td>
+        <td>{{employee.weight}}</td>
+        <td>{{employee.rupees}}</td>
+        <td>{{employee.purchase_date}}</td>
+
+        <td>
+          <a class="btn btn-success" (click)="editEmployee(employee)">Edit</a>
+          <a class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</a>
+  
+      </td>
+      
+    </tr>
+  
+    
+  </tbody>
+  </table>
+    </div>
+
