@@ -25,6 +25,8 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthenticationService } from './authentication.service';
 import { BasicAuthHtppInterceptorService } from './basicAuthentication.service';
 import { HttpClientModule } from '@angular/common/http/src/module';
+import { RegisterComponent } from './register/register.component';
+import { UserService } from './user.service';
 
 const approutes:Routes=[
   {path:'home', component:EmployeeHomeComponent},
@@ -34,7 +36,8 @@ const approutes:Routes=[
   {path:'dummy', component:DummyemployeeListComponent},
   {path:'commodity', component:CommodityListComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService]}
+  { path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService]},
+  { path: 'register', component: RegisterComponent}
 
 
  
@@ -52,7 +55,8 @@ const approutes:Routes=[
     CommodityListComponent,
     EmployeeHomeComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent
     
     
     
@@ -65,7 +69,7 @@ const approutes:Routes=[
     RouterModule.forRoot(approutes)
 
   ],
-  providers: [AuthGaurdService,AuthenticationService,BasicAuthHtppInterceptorService],
+  providers: [AuthGaurdService,AuthenticationService,BasicAuthHtppInterceptorService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

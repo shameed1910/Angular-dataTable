@@ -1,29 +1,30 @@
 <div class="container">
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-          <!-- Tabs Titles -->
+  <h2>Login</h2>
+  <form novalidate [formGroup]="loginForm" (ngSubmit)="checkLogin()">
+
+  <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" class="form-control" formControlName="username"  >
+      <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
+        <div *ngIf="username.errors.required">User Name is required</div>
+        <div *ngIf="username.errors.minlength">User Name should be minimum 3 characters</div>
       
-          <!-- Icon -->
-          <div class="fadeIn first">
-            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      </div>
+    </div>
+
+      <div class="form-group">
+          <label for="name">Password</label>
+          <input type="text" class="form-control" formControlName="password"  >
+          <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password should be minimum 3 characters</div>
+          
           </div>
-        <div>
-  
-    <label for="name">User Name:</label>
-     <input type="text"  name="username" [(ngModel)]="username">
-  
-  
-     <label for="name">Password :</label>
-     <input type="password"  name="password" [(ngModel)]="password">
-  
-
         </div>
-<button (click)=checkLogin() class="btn btn-success">Login</button>
 
-<div id="formFooter">
-    <a class="underlineHover" href="#">Forgot Password?</a>
-  </div>
+        <button type="submit" class="btn btn-primary" >Login</button>
 
-</div>
-</div>
+        <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+
+   </form>
 </div>
