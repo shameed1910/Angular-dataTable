@@ -18,7 +18,7 @@ export class UserService {
     'Authorization': this.authenticationService.getToken()
     });
 
-  private apiUrl = 'http://localhost:8081/demo/register/insert';
+  private apiUrl = 'http://localhost:8081/demo/register';
 
 private user:UserRegister;
 
@@ -28,15 +28,13 @@ private user:UserRegister;
 
   createUser(user :UserRegister): Observable<UserRegister>
   {
-    console.log('inside create user...'+user.username);
+    console.log('inside create user...'+user. name);
 
     return this.http.post(this.apiUrl, user,{headers: this.headers})
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
   }
 
-
-  
   setter(user:UserRegister){
     this.user=user;
   }

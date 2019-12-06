@@ -28,11 +28,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = new FormGroup({
 
-      firstname: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      username: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      role: new FormControl('', [Validators.required, Validators.minLength(5)])
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      role: new FormControl('', Validators.required)
     });
 
   }
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       let user: UserRegister = new UserRegister(null,
         this.registerForm.controls['firstname'].value,
         this.registerForm.controls['lastname'].value,
-        this.registerForm.controls['username'].value,
+        this.registerForm.controls['name'].value,
         this.registerForm.controls['password'].value,
         this.registerForm.controls['role'].value);
 
