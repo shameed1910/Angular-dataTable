@@ -12,23 +12,28 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class EmployeeService {
 
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'Authorization': this.authenticationService.getToken()
-    });
+
   
-  private apiUrl = 'http://localhost:8081/demo/getUsers';
-  private apiUrl1 = 'http://localhost:8081/demo/insert';
-  private apiUrl2 = 'http://localhost:8081/demo';
-  private apiUrl3 = 'http://localhost:8081/demo/updateUser';
+  private apiUrl = '/demo/getUsers';
+  private apiUrl1 = '/demo/insert';
+  private apiUrl2 = '/demo';
+  private apiUrl3 = '/demo/updateUser';
 
 private employee:Employee;
 
   constructor(private http: Http, private authenticationService: AuthenticationService) {
   }
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', this.authenticationService.getToken()); 
+  }
 
   findAll(): Observable<Employee[]>  {
-    return this.http.get(this.apiUrl,{headers: this.headers})
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
+
+    return this.http.get(this.apiUrl,{
+      headers:headers
+    })
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -36,8 +41,10 @@ private employee:Employee;
   createEmployee(employee :Employee): Observable<Employee>
   {
     console.log('inside createEmployee...'+employee.name);
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
 
-    return this.http.post(this.apiUrl1, employee,{headers: this.headers})
+    return this.http.post(this.apiUrl1, employee,{headers: headers})
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
   }
@@ -45,19 +52,27 @@ private employee:Employee;
   deleteEmployeeById(id :number): Observable<boolean>
   {
     console.log('inside createEmployee...'+this.apiUrl2 + '/' + id);
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
 
-    return this.http.delete(this.apiUrl2 + '/' + id,{headers: this.headers})
+    return this.http.delete(this.apiUrl2 + '/' + id,{headers: headers})
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   findById(id: number): Observable<Employee> {
-    return this.http.get(this.apiUrl2 + '/' + id,{headers: this.headers})
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
+
+    return this.http.get(this.apiUrl2 + '/' + id,{headers: headers})
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
 
   updateEmployee(employee: Employee): Observable<Employee> {
-    return this.http.put(this.apiUrl3, employee,{headers: this.headers})
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
+
+    return this.http.put(this.apiUrl3, employee,{headers: headers})
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

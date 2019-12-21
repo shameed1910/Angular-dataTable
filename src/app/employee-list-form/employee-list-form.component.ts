@@ -39,7 +39,6 @@ export class EmployeeListFormComponent implements OnInit {
         Validators.pattern("[^ @]*@[^ @]*")
       ])
     });
-    
     }
 
     getAllEmployees() {

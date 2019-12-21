@@ -25,6 +25,8 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { AuthenticationService } from './authentication.service';
 import { BasicAuthHtppInterceptorService } from './basicAuthentication.service';
 import { HttpClientModule } from '@angular/common/http/src/module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
 
@@ -69,7 +71,13 @@ const approutes:Routes=[
     RouterModule.forRoot(approutes)
 
   ],
-  providers: [AuthGaurdService,AuthenticationService,BasicAuthHtppInterceptorService,UserService],
+  providers: [AuthGaurdService,AuthenticationService,,UserService,
+    {provide:HTTP_INTERCEPTORS,
+    useClass:BasicAuthHtppInterceptorService,
+    multi:true
+  
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
