@@ -9,23 +9,28 @@
         <a class="navbar-brand" href="#">ASSLAM SILVER </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/home" routerLinkActive="active" >employeeHome</a>
+        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/home" routerLinkActive="active" >Home</a>
         </li>
 
       <li class="nav-item">
-        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/create" routerLinkActive="active">CreateEmployee</a>
+        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/create" routerLinkActive="active">CreateCustomer</a>
         </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/list" routerLinkActive="active">EmployeesList</a>
+        <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/list" routerLinkActive="active">CustomersList</a>
         </li>
             <li class="nav-item">
                 <a class="nav-link" *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
 
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/download" routerLinkActive="active">Reports</a>
+                  </li>
+                  
+                <li class="nav-item">
                   <a class="nav-link" *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" routerLinkActive="active">Logout</a>
   
                   </li>
+
 
     </ul>
 

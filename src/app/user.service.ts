@@ -13,10 +13,6 @@ import { UserRegister } from './userRegister';
 @Injectable()
 export class UserService {
 
-  private headers = new Headers({
-    'Content-Type': 'application/json',
-    'Authorization': this.authenticationService.getToken()
-    });
 
   private apiUrl = 'http://localhost:8081/demo/register';
 
@@ -25,12 +21,16 @@ private user:UserRegister;
   constructor(private http: Http,private authenticationService:AuthenticationService) {
   }
 
-
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', this.authenticationService.getToken()); 
+  }
   createUser(user :UserRegister): Observable<UserRegister>
   {
     console.log('inside create user...'+user. name);
+    let headers= new Headers();
+    this.createAuthorizationHeader(headers);
 
-    return this.http.post(this.apiUrl, user,{headers: this.headers})
+    return this.http.post(this.apiUrl, user,{headers: headers})
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
 
   }

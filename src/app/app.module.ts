@@ -29,6 +29,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
+import { FileDownloadComponent } from './file-download/file-download.component';
+import { FileDownloadService } from './file-download.service';
 
 const approutes:Routes=[
   {path:'home', component:EmployeeHomeComponent},
@@ -39,6 +41,7 @@ const approutes:Routes=[
   {path:'commodity', component:CommodityListComponent},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[AuthGaurdService]},
+  { path: 'download', component: FileDownloadComponent},
   { path: 'register', component: RegisterComponent}
 
 
@@ -58,20 +61,21 @@ const approutes:Routes=[
     EmployeeHomeComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    FileDownloadComponent
     
     
     
   ],
   imports: [
-    BrowserModule, DataTablesModule,HttpModule ,
+    BrowserModule, DataTablesModule,HttpModule,
     FormsModule, ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
 
     RouterModule.forRoot(approutes)
 
   ],
-  providers: [AuthGaurdService,AuthenticationService,,UserService,
+  providers: [AuthGaurdService,AuthenticationService,,UserService,FileDownloadService,
     {provide:HTTP_INTERCEPTORS,
     useClass:BasicAuthHtppInterceptorService,
     multi:true

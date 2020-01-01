@@ -14,13 +14,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { BasicAuthHtppInterceptorService } from './basicAuthentication.service';
+import { FileDownloadService } from './file-download.service';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthGaurdService,EmployeeService,AuthenticationService,BasicAuthHtppInterceptorService]
+  providers: [AuthGaurdService,EmployeeService,AuthenticationService,BasicAuthHtppInterceptorService
+  ,FileDownloadService]
 
 })
 
